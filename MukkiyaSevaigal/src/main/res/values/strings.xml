@@ -1,0 +1,3 @@
+<resources>
+    <string name="error">OK that was not supposed to happen.\nWould you like to send the error report?</string>
+</resources>
