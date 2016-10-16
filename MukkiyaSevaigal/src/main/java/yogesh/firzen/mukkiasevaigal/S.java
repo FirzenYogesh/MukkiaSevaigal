@@ -211,33 +211,24 @@ public class S {
         InputStreamReader reader = null;
         FileWriter writer = null;
         try {
-            // For Android 4.0 and earlier, you will get all app's log output, so filter it to
-            // mostly limit it to your app's output.  In later versions, the filtering isn't needed.
             String cmd = (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) ?
                     "logcat -d -v time " + S.appName + ":v dalvikvm:v System.err:v *:s" :
                     "logcat -d -v time";
-
-            // get input stream
             Process process = Runtime.getRuntime().exec(cmd);
             reader = new InputStreamReader(process.getInputStream());
-
-            // write output stream
             writer = new FileWriter(file);
             writer.write("User : " + Build.USER + "\n");
             writer.write("Android version: " + Build.VERSION.SDK_INT + "\n");
             writer.write("Brand:" + Build.BRAND + "\n");
             writer.write("Device: " + model + "\n");
             writer.write("App version: " + (info == null ? "(null)" : info.versionCode) + "\n");
-
             char[] buffer = new char[10000];
             do {
                 int n = reader.read(buffer, 0, buffer.length);
                 if (n == -1)
                     break;
                 writer.write(buffer, 0, n);
-
             } while (true);
-
             reader.close();
             writer.close();
         } catch (IOException e) {
@@ -253,8 +244,6 @@ public class S {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
-            // You might want to write a failure message to the log here.
             return null;
         }
         return fullName;
