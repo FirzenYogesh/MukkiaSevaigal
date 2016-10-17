@@ -390,14 +390,13 @@ public class M {
     /**
      * Toast your Custom View Message
      *
-     * @param context Context
-     * @param view    Your Custom View
+     * @param view Your Custom View
      */
-    public static void T(@NonNull final Context context, @NonNull final View view) {
+    public static void T(@NonNull final View view) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Toast toast = new Toast(context);
+                Toast toast = new Toast(view.getContext());
                 toast.setView(view);
                 toast.setDuration(Toast.LENGTH_SHORT);
                 toast.show();
@@ -408,15 +407,14 @@ public class M {
     /**
      * Toast your Custom View Message
      *
-     * @param context Context
-     * @param view    Your Custom View
-     * @param length  Either LENGTH_SHORT or LENGTH_LONG
+     * @param view   Your Custom View
+     * @param length Either LENGTH_SHORT or LENGTH_LONG
      */
-    public static void T(@NonNull final Context context, @NonNull final View view, final int length) {
+    public static void T(@NonNull final View view, final int length) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Toast toast = new Toast(context);
+                Toast toast = new Toast(view.getContext());
                 toast.setView(view);
                 toast.setDuration(length);
                 toast.show();
@@ -427,17 +425,16 @@ public class M {
     /**
      * Toast your Custom View Message
      *
-     * @param context Context
      * @param view    Your Custom View
      * @param gravity Gravity of the toast
      * @param xPos    The xOffset of the toast
      * @param yPos    The yOffset of the toast
      */
-    public static void T(@NonNull final Context context, @NonNull final View view, final int gravity, final int xPos, final int yPos) {
+    public static void T(@NonNull final View view, final int gravity, final int xPos, final int yPos) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Toast toast = new Toast(context);
+                Toast toast = new Toast(view.getContext());
                 toast.setView(view);
                 toast.setGravity(gravity, xPos, yPos);
                 toast.setDuration(Toast.LENGTH_SHORT);
@@ -449,18 +446,17 @@ public class M {
     /**
      * Toast your Custom View Message
      *
-     * @param context Context
      * @param view    Your Custom View
      * @param gravity Gravity of the toast
      * @param xPos    The xOffset of the toast
      * @param yPos    The yOffset of the toast
      * @param length  Either LENGTH_SHORT or LENGTH_LONG
      */
-    public static void T(@NonNull final Context context, @NonNull final View view, final int gravity, final int xPos, final int yPos, final int length) {
+    public static void T(@NonNull final View view, final int gravity, final int xPos, final int yPos, final int length) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Toast toast = new Toast(context);
+                Toast toast = new Toast(view.getContext());
                 toast.setView(view);
                 toast.setGravity(gravity, xPos, yPos);
                 toast.setDuration(length);
