@@ -22,7 +22,7 @@ Add Gradle dependency :
 
 ```gradle
 dependencies {
-   compile 'yogesh.firzen:MukkiyaSevaigal:1.0.0'
+   compile 'yogesh.firzen:MukkiyaSevaigal:1.0.1'
 }
 ```
 
@@ -30,8 +30,8 @@ AppCompat, Google Design, CommonsIO library is required by this library.
 
 ```gradle
 dependencies {
-   compile 'com.android.support:appcompat-v7:24.2.1'
-   compile 'com.android.support:design:24.2.1'
+   compile 'com.android.support:appcompat-v7:25.3.0'
+   compile 'com.android.support:design:25.3.0'
    compile 'commons-io:commons-io:2.4'
 }
 ```
