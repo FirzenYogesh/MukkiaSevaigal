@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 public class S {
 
     public static final String Gaali = "gaali ah iruku";
-    public static final String piri = ";ash;";
+    public static final String piri = ";!piri!;";
     public static int heightPixels;
     public static int widthPixels;
     public static float scaledDensity;
