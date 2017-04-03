@@ -9,6 +9,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
@@ -488,6 +490,13 @@ public class S {
         return 0;
     }
 
+
+    /**
+     * Checks whether the given package is a system app or not
+     *
+     * @param packageName Application package to be checked
+     * @return true if it is a system app else false
+     */
     public static boolean isSystemApp(String packageName) {
         Set<String> systemApps = new HashSet<>();
         try {
@@ -509,7 +518,23 @@ public class S {
         return systemApps.contains(packageName);
     }
 
+
+    /**
+     * Checks whether the current application is a system app or not
+     *
+     * @param context Application package to be checked
+     * @return true if it is a system app else false
+     */
     public static boolean isSystemApp(Context context) {
         return isSystemApp(context.getPackageName());
+    }
+
+    /**
+     * Creates a Handler to post runnable in main thread
+     *
+     * @return a Handler object
+     */
+    public static Handler runInMainThread() {
+        return new Handler(Looper.getMainLooper());
     }
 }

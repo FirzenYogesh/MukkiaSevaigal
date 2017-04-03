@@ -272,6 +272,31 @@ public class P {
     }
 
     /**
+     * Get the saved Integer value
+     *
+     * @param context      context
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static int getInt(@NonNull Context context, @NonNull String key, int defaultValue) {
+        return getPreferences(context).getInt(key, defaultValue);
+    }
+
+    /**
+     * Get the saved Integer value
+     *
+     * @param context      context
+     * @param prefName     The name of the preference
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static int getInt(@NonNull Context context, @NonNull String prefName, @NonNull String key, int defaultValue) {
+        return getPreferences(context, prefName).getInt(key, defaultValue);
+    }
+
+    /**
      * Get the saved Long value
      *
      * @param context context
@@ -292,6 +317,31 @@ public class P {
      */
     public static long getLong(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
         return getPreferences(context, prefName).getLong(key, 0);
+    }
+
+    /**
+     * Get the saved Long value
+     *
+     * @param context      context
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static long getLong(@NonNull Context context, @NonNull String key, long defaultValue) {
+        return getPreferences(context).getLong(key, defaultValue);
+    }
+
+    /**
+     * Get the saved Long value
+     *
+     * @param context      context
+     * @param prefName     The name of the preference
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static long getLong(@NonNull Context context, @NonNull String prefName, @NonNull String key, long defaultValue) {
+        return getPreferences(context, prefName).getLong(key, defaultValue);
     }
 
     /**
@@ -318,6 +368,31 @@ public class P {
     }
 
     /**
+     * Get the saved Float value
+     *
+     * @param context      context
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static float getFloat(@NonNull Context context, @NonNull String key, float defaultValue) {
+        return getPreferences(context).getFloat(key, defaultValue);
+    }
+
+    /**
+     * Get the saved Float value
+     *
+     * @param context      context
+     * @param prefName     The name of the preference
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static float getFloat(@NonNull Context context, @NonNull String prefName, @NonNull String key, float defaultValue) {
+        return getPreferences(context, prefName).getFloat(key, defaultValue);
+    }
+
+    /**
      * Get the saved String value
      *
      * @param context context
@@ -338,6 +413,32 @@ public class P {
      */
     public static String getString(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
         return getPreferences(context, prefName).getString(key, vera);
+    }
+
+/*
+    *//**
+     * Get the saved String value
+     *
+     * @param context context
+     * @param key     The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     *//*
+    public static String getString(@NonNull Context context, @NonNull String key, Object defaultValue) {
+        return getPreferences(context).getString(key, defaultValue.toString());
+    }*/
+
+    /**
+     * Get the saved String value
+     *
+     * @param context      context
+     * @param prefName     The name of the preference
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static String getString(@NonNull Context context, @NonNull String prefName, @NonNull String key, String defaultValue) {
+        return getPreferences(context, prefName).getString(key, defaultValue);
     }
 
     /**
@@ -361,6 +462,31 @@ public class P {
      */
     public static boolean getBoolean(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
         return getPreferences(context, prefName).getBoolean(key, false);
+    }
+
+    /**
+     * Get the saved Boolean value
+     *
+     * @param context      context
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static boolean getBoolean(@NonNull Context context, @NonNull String key, boolean defaultValue) {
+        return getPreferences(context).getBoolean(key, defaultValue);
+    }
+
+    /**
+     * Get the saved Boolean value
+     *
+     * @param context      context
+     * @param prefName     The name of the preference
+     * @param key          The key of the stored value
+     * @param defaultValue The value to be returned if the key is not found
+     * @return The stored value if key exists or defaultValue specified
+     */
+    public static boolean getBoolean(@NonNull Context context, @NonNull String prefName, @NonNull String key, boolean defaultValue) {
+        return getPreferences(context, prefName).getBoolean(key, defaultValue);
     }
 
     /**

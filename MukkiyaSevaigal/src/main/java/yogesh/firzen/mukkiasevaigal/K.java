@@ -25,7 +25,7 @@ public class K {
     public final static String CONTACTS_READ = Manifest.permission.READ_CONTACTS;
     public final static String CONTACTS_WRITE = Manifest.permission.WRITE_CONTACTS;
     public final static String RECORD = Manifest.permission.RECORD_AUDIO;*/
-    public static final int PERM_REQ = 7;
+    public static final int PERM_REQ = 7596;
 
     /**
      * Dangerous Permissions for Calendar
@@ -127,7 +127,37 @@ public class K {
         }
     }
 
-    @Deprecated
+    /**
+     * Requests permission
+     *
+     * @param activity The activity to which the permission is asked
+     * @param perm     Permission to be requested, one of the static members
+     */
+    public static void getPermissionFor(@NonNull final Activity activity, @NonNull final String perm) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, perm)) {
+            AppCompatDialog dialog = new AlertDialog.Builder(activity).setTitle(S.appName).setMessage(perm).setPositiveButton("DONE", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ActivityCompat.requestPermissions(activity, new String[]{perm}, PERM_REQ);
+                }
+            }).create();
+            dialog.show();
+        } else {
+            ActivityCompat.requestPermissions(activity, new String[]{perm}, PERM_REQ);
+        }
+    }
+
+    /**
+     * Requests permission
+     *
+     * @param activity The activity to which the permission is asked
+     * @param perm     Permissions to be requested
+     */
+    public static void getPermissionFor(@NonNull final Activity activity, @NonNull final String[] perm) {
+        ActivityCompat.requestPermissions(activity, perm, PERM_REQ);
+    }
+
+    /*@Deprecated
     public static void getPermissionsFor(@NonNull final Activity activity, @NonNull final String[] perms, String title, String messagge) {
         for (int i = 0; i < perms.length; i++) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, perms[i])) {
@@ -143,7 +173,7 @@ public class K {
                 ActivityCompat.requestPermissions(activity, new String[]{perms[i]}, PERM_REQ);
             }
         }
-    }
+    }*/
 
     /**
      * Check for READ_CALENDAR permission
