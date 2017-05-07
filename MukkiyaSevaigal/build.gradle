@@ -34,7 +34,7 @@ version = '1.0.5'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         //applicationId "yogesh.firzen.mukkiasevaigal"
@@ -55,8 +55,8 @@ android {
     }
 }
 
-def siteUrl = 'https://github.com/Yogesh0795/MukkiyaSevaigal'      // Homepage URL of the library
-def gitUrl = 'https://github.com/Yogesh0795/MukkiyaSevaigal.git'   // Git repository URL
+def siteUrl = 'https://github.com/FirzenYogesh/MukkiyaSevaigal'      // Homepage URL of the library
+def gitUrl = 'https://github.com/FirzenYogesh/MukkiyaSevaigal.git'   // Git repository URL
 group = "yogesh.firzen"
 
 install {
