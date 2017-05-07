@@ -5,6 +5,8 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -39,10 +41,31 @@ public class S {
     public static final String piri = ";!piri!;";
     public static int heightPixels;
     public static int widthPixels;
+    public static float heightDp;
+    public static float widthDp;
+    public static float widthInches;
+    public static float heightInches;
+    public static float screenSizeInches;
+    public static float xDpi;
+    public static float yDpi;
     public static float scaledDensity;
     public static int densityDpi;
     public static float density;
     public static String appName;
+
+    /**
+     * Sizes of screen
+     */
+    public enum ScreenSize {
+        SMALL, NORMAL, LARGE, XLARGE, UNDEFINED
+    }
+
+    public enum ScreenDensity {
+        LDPI, MDPI, HDPI, XHDPI, XXHDPI, TV, UNKNOWN, XXXHDPI
+    }
+
+    private static ScreenSize screenSize;
+    private static ScreenDensity screenDensity;
 
     public static String thapuFile;
 
@@ -63,14 +86,25 @@ public class S {
     /**
      * Set display details
      *
-     * @param dm Give DisplayMetrics
+     * @param resources Give Resource obtained from context
      */
-    public static void setDisp(@NonNull DisplayMetrics dm) {
+    private static void setDisp(@NonNull Resources resources) {
+        DisplayMetrics dm = resources.getDisplayMetrics();
         heightPixels = dm.heightPixels;
         widthPixels = dm.widthPixels;
+        xDpi = dm.xdpi;
+        yDpi = dm.ydpi;
         scaledDensity = dm.scaledDensity;
         density = dm.density;
         densityDpi = dm.densityDpi;
+        heightDp = pxTodp(heightPixels);
+        widthDp = pxTodp(widthPixels);
+        widthInches = widthPixels / xDpi;
+        heightInches = heightPixels / yDpi;
+        screenSizeInches = (float) Math.sqrt((Math.pow(heightInches, 2) + Math.pow(widthInches, 2)));
+        setScreenSize(resources);
+        setScreenDensity(resources);
+
     }
 
     /**
@@ -79,12 +113,7 @@ public class S {
      * @param context Context
      */
     public static void setDisp(@NonNull Context context) {
-        DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        heightPixels = dm.heightPixels;
-        widthPixels = dm.widthPixels;
-        scaledDensity = dm.scaledDensity;
-        density = dm.density;
-        densityDpi = dm.densityDpi;
+        setDisp(context.getResources());
     }
 
     /**
@@ -120,25 +149,61 @@ public class S {
     }
 
     /**
-     * Check whether device is connect to Internet
+     * Returns the size of the screen
      *
-     * @return true if connected false if not
+     * @return One of the enum in ScreenSize
      */
-    public static boolean isOnline() {
-        try {
-            Process ipProcess = Runtime.getRuntime().exec("ping -c 1 www.google.com");
-            int exitValue = ipProcess.waitFor();
-            return (exitValue == 0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+    public static ScreenSize getScreenSize() {
+        return screenSize;
     }
 
-    public static boolean isOnline(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo ni = manager.getActiveNetworkInfo();
-        return ni != null && ni.isConnected();
+    private static void setScreenSize(Resources res) {
+        //screenLayout = res.getConfiguration().screenLayout;
+        switch (res.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) {
+            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                screenSize = ScreenSize.SMALL;
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                screenSize = ScreenSize.NORMAL;
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                screenSize = ScreenSize.LARGE;
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_XLARGE:
+                screenSize = ScreenSize.XLARGE;
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_UNDEFINED:
+                screenSize = ScreenSize.UNDEFINED;
+                break;
+        }
+    }
+
+
+
+    public static ScreenDensity getScreenDensity() {
+        return screenDensity;
+    }
+
+    private static void setScreenDensity(Resources res) {
+        DisplayMetrics dm = res.getDisplayMetrics();
+        int density = dm.densityDpi;
+        if (density == DisplayMetrics.DENSITY_HIGH) {
+            screenDensity = ScreenDensity.HDPI;
+        } else if (density == DisplayMetrics.DENSITY_MEDIUM) {
+            screenDensity = ScreenDensity.MDPI;
+        } else if (density == DisplayMetrics.DENSITY_LOW) {
+            screenDensity = ScreenDensity.LDPI;
+        } else if (density == DisplayMetrics.DENSITY_XHIGH) {
+            screenDensity = ScreenDensity.XHDPI;
+        } else if (density == DisplayMetrics.DENSITY_XXHIGH) {
+            screenDensity = ScreenDensity.XXHDPI;
+        } else if (density == DisplayMetrics.DENSITY_XXXHIGH) {
+            screenDensity = ScreenDensity.XXXHDPI;
+        } else if (density == DisplayMetrics.DENSITY_TV) {
+            screenDensity = ScreenDensity.TV;
+        } else {
+            screenDensity = ScreenDensity.UNKNOWN;
+        }
     }
 
     /**
@@ -147,7 +212,7 @@ public class S {
      * @param x value in dp
      * @return pixels
      */
-    public static int dp(int x) {
+    public static int dpToPx(int x) {
         return (int) ((x * density) + 0.5);
     }
 
@@ -158,7 +223,7 @@ public class S {
      * @return dp
      */
     public static float pxTodp(float px) {
-        return px / densityDpi;
+        return px / density;
     }
 
     /**
@@ -167,7 +232,7 @@ public class S {
      * @param x pixel
      * @return pixels
      */
-    public static int sp(int x) {
+    public static int spToPx(int x) {
         return (int) ((x * scaledDensity) + 0.5);
     }
 
@@ -185,7 +250,40 @@ public class S {
      * Log the DisplayData
      */
     public static void dispData() {
-        M.L("nammadata", widthPixels + "\t\t" + heightPixels + "\t\t" + scaledDensity + "\t\t" + density + "\t\t" + densityDpi);
+        M.L("Display Parameters",
+                "Width (px) : " + widthPixels + "\t\t" + "Width (dp) : " + widthDp + "\t\t" + "Width (inches) : " + widthInches + "\n" +
+                        "Height (px) : " + heightPixels + "\t\t" + "Height (dp) : " + heightDp + "\t\t" + "Height (inches) : " + heightInches + "\n" +
+                        "Screen Size (inches) : " + screenSizeInches + "\t\t" + "Screen Size : " + screenSize + "\n"
+                        + "Screen Density Scale : " + density + "\t\t" + "Font Scale : " + scaledDensity + "\n" +
+                        "Screen Density (dpi) : " + densityDpi + "\t\t" + "Screen Density : " + screenDensity + "\n" +
+                        "xDpi : " + xDpi + "\t\t" + "yDpi : " + yDpi + "\n");
+    }
+
+    /**
+     * Check whether device is connected to Internet or not
+     *
+     * @return true if connected false if not
+     */
+    public static boolean isOnline() {
+        try {
+            Process ipProcess = Runtime.getRuntime().exec("ping -c 1 www.google.com");
+            int exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * Check whether device is connected to Internet or not
+     *
+     * @return true if connected false if not
+     */
+    public static boolean isOnline(Context context) {
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = manager.getActiveNetworkInfo();
+        return ni != null && ni.isConnected();
     }
 
     /**
@@ -378,7 +476,7 @@ public class S {
     }
 
     /**
-     * Converts bytes to easily identifiable format
+     * Converts bits to easily identifiable format
      *
      * @param bits bits value
      * @return String value in bits or Kbits or Mbits or Gbits
@@ -442,7 +540,6 @@ public class S {
 
     /**
      * Use this method to know if the device is IDLE or not
-     * Available only in Android M
      *
      * @param context Context
      * @return true if the device is idle else false

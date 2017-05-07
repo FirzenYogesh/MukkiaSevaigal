@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,14 +28,25 @@ public class Thapu extends AppCompatActivity {
         final String email = getIntent().getStringExtra(S.thapuMail);
         final String pass = getIntent().getStringExtra(S.thapuPass);
         registerReceiver(br, new IntentFilter("thavara anupiten"));
-        new AsyncTask<Void, Void, Void>() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            new AsyncTask<Void, Void, Void>() {
 
-            @Override
-            protected Void doInBackground(Void... params) {
-                S.thapuThedar(Thapu.this);
-                return null;
-            }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                @Override
+                protected Void doInBackground(Void... params) {
+                    S.thapuThedar(Thapu.this);
+                    return null;
+                }
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        } else {
+            new AsyncTask<Void, Void, Void>() {
+
+                @Override
+                protected Void doInBackground(Void... params) {
+                    S.thapuThedar(Thapu.this);
+                    return null;
+                }
+            }.execute();
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.NammaDiaAlert)
                 .setTitle("Ah interesting!")
                 .setMessage(R.string.error)
@@ -57,9 +69,17 @@ public class Thapu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (dest != null) {
-                    new ThapuSender(Thapu.this, dest, email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        new ThapuSender(Thapu.this, dest, email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    } else {
+                        new ThapuSender(Thapu.this, dest, email, pass).execute();
+                    }
                 } else {
-                    new ThapuSender(Thapu.this, email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        new ThapuSender(Thapu.this, email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    } else {
+                        new ThapuSender(Thapu.this, email, pass).execute();
+                    }
                 }
             }
         });

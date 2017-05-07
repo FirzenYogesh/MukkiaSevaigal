@@ -30,7 +30,7 @@ ext {
     allLicenses = ["Apache-2.0"]
 }*/
 
-version = '1.0.3'
+version = '1.0.5'
 
 android {
     compileSdkVersion 25
@@ -38,7 +38,7 @@ android {
 
     defaultConfig {
         //applicationId "yogesh.firzen.mukkiasevaigal"
-        minSdkVersion 11
+        minSdkVersion 9
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"

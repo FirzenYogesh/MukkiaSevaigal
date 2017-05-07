@@ -1,11 +1,14 @@
 package yogesh.firzen.mukkiasevaigal;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -688,11 +691,12 @@ public class M {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setSmallIcon(iconRes);
+                .setSmallIcon(iconRes)
+                .setAutoCancel(true)
+                .setColor(Color.TRANSPARENT);
+    }*/
 
-    }
-
-    public static void N(@NonNull Context context, int id, String title, String message, @DrawableRes int iconRes) {
+    /*public static void N(@NonNull Context context, int id, String title, String message, @DrawableRes int iconRes) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setContentTitle(title)
                 .setContentText(message)
@@ -700,9 +704,9 @@ public class M {
                 .setAutoCancel(true)
                 .setColor(Color.WHITE)
                 .set;
-    }
+    }*/
 
-    private static void buildNotification(NotificationCompat.Builder builder, int id) {
+    /*private static void buildNotification(NotificationCompat.Builder builder, int id) {
 
     }*/
 }

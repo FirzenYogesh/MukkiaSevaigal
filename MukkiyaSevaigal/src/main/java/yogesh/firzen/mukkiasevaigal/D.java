@@ -4,12 +4,15 @@ import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import java.io.File;
 
 /**
  * Created by user on 10-05-2016.
  */
+@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 public class D {
 
     private DB db;

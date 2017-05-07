@@ -2,7 +2,9 @@ package yogesh.firzen.mukkiasevaigal;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -214,7 +216,7 @@ public class P {
                 editor.putFloat(keys.get(i), (Float) values.get(i));
             if (values.get(i) instanceof Boolean)
                 editor.putBoolean(keys.get(i), (Boolean) values.get(i));
-            if (values.get(i) instanceof Set)
+            if (values.get(i) instanceof Set && Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB)
                 editor.putStringSet(keys.get(i), (Set<String>) values.get(i));
         }
         editor.commit();
@@ -242,7 +244,7 @@ public class P {
                 editor.putFloat(keys.get(i), (Float) values.get(i));
             if (values.get(i) instanceof Boolean)
                 editor.putBoolean(keys.get(i), (Boolean) values.get(i));
-            if (values.get(i) instanceof Set)
+            if (values.get(i) instanceof Set && Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB)
                 editor.putStringSet(keys.get(i), (Set<String>) values.get(i));
         }
         editor.commit();
@@ -496,6 +498,7 @@ public class P {
      * @param key     The key of the stored value
      * @return The string set values if key exists else an empty set
      */
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public static Set<String> getSet(@NonNull Context context, @NonNull String key) {
         return getPreferences(context).getStringSet(key, new LinkedHashSet<String>());
     }
@@ -508,6 +511,7 @@ public class P {
      * @param key      The key of the stored value
      * @return The string set values if key exists else an empty set
      */
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public static Set<String> getSet(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
         return getPreferences(context, prefName).getStringSet(key, new LinkedHashSet<String>());
     }

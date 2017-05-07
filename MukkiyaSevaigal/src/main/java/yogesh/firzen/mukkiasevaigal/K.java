@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialog;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatDialog;
  * Ask Permission
  */
 @TargetApi(Build.VERSION_CODES.M)
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class K {
     /*public final static String WRITE_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     public final static String READ_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE;
