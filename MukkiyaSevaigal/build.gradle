@@ -34,7 +34,7 @@ version = '1.0.5'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion "26.0.0"
 
     defaultConfig {
         //applicationId "yogesh.firzen.mukkiasevaigal"
@@ -96,9 +96,9 @@ install {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'commons-io:commons-io:2.4'
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.android.support:design:25.4.0'
+    compile 'commons-io:commons-io:2.5'
 }
 
 task sourcesJar(type: Jar) {
@@ -136,5 +136,14 @@ bintray {
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
         publish = true
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
     }
 }
