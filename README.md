@@ -14,7 +14,7 @@ You can easily:
 
 ## Requirements:
 
-This library works form API-9
+This library works form API-14
 
 ## Getting Started :
 
@@ -22,7 +22,7 @@ Add Gradle dependency :
 
 ```gradle
 dependencies {
-   compile 'yogesh.firzen:MukkiyaSevaigal:1.0.5'
+   compile 'yogesh.firzen:MukkiyaSevaigal:1.0.6'
 }
 ```
 
@@ -30,8 +30,8 @@ AppCompat, Google Design, CommonsIO library is required by this library.
 
 ```gradle
 dependencies {
-   compile 'com.android.support:appcompat-v7:25.3.1'
-   compile 'com.android.support:design:25.3.1'
+   compile 'com.android.support:appcompat-v7:26.0.0-beta2'
+   compile 'com.android.support:design:26.0.0-beta2'
    compile 'commons-io:commons-io:2.5'
 }
 ```
