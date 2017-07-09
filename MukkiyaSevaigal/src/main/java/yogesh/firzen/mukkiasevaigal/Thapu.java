@@ -30,7 +30,6 @@ public class Thapu extends AppCompatActivity {
         registerReceiver(br, new IntentFilter("thavara anupiten"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             new AsyncTask<Void, Void, Void>() {
-
                 @Override
                 protected Void doInBackground(Void... params) {
                     S.thapuThedar(Thapu.this);

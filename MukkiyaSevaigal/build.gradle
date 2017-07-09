@@ -1,45 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-/*apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'*/
-/*apply from: 'installv1.gradle'
-apply from:'bintrayv1.gradle'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'mukkiasevaigal'
-
-    publishedGroupId = 'yogesh.firzen'
-    libraryName = 'MukkiaSevaigal'
-    artifact = 'MukkiyaSevaigal'
-
-    libraryDescription = 'Mukkiya Sevaigal'
-
-    siteUrl = 'https://github.com/Yogesh0795/MukkiyaSevaigal'
-    gitUrl = 'https://github.com/Yogesh0795/MukkiyaSevaigal.git'
-
-    libraryVersion = '1.0.5'
-
-    developerId = 'firzenyogesh'
-    developerName = 'S.Yogesh'
-    developerEmail = 'firzenyogesh@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}*/
-
-version = '1.0.5'
+version = '1.0.6'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "26.0.0"
 
     defaultConfig {
         //applicationId "yogesh.firzen.mukkiasevaigal"
-        minSdkVersion 9
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
@@ -52,6 +24,9 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -96,9 +71,9 @@ install {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:design:25.4.0'
-    compile 'commons-io:commons-io:2.5'
+    implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
+    implementation 'com.android.support:design:26.0.0-beta2'
+    implementation 'commons-io:commons-io:2.5'
 }
 
 task sourcesJar(type: Jar) {
