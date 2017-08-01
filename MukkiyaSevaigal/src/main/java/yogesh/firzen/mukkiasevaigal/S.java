@@ -179,7 +179,6 @@ public class S {
     }
 
 
-
     public static ScreenDensity getScreenDensity() {
         return screenDensity;
     }
@@ -303,7 +302,8 @@ public class S {
         String model = Build.MODEL;
         if (!model.startsWith(Build.MANUFACTURER))
             model = Build.MANUFACTURER + " " + model;
-
+        if (thapuFile == null)
+            thapuFile = "Log.txt";
         File file = new File(context.getFilesDir(), thapuFile);
         if (file.exists()) file.delete();
         Uri u = Uri.fromFile(file);

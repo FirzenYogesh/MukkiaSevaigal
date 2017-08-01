@@ -6,11 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Activity for Error Handler
@@ -28,24 +29,7 @@ public class Thapu extends AppCompatActivity {
         final String email = getIntent().getStringExtra(S.thapuMail);
         final String pass = getIntent().getStringExtra(S.thapuPass);
         registerReceiver(br, new IntentFilter("thavara anupiten"));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... params) {
-                    S.thapuThedar(Thapu.this);
-                    return null;
-                }
-            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        } else {
-            new AsyncTask<Void, Void, Void>() {
-
-                @Override
-                protected Void doInBackground(Void... params) {
-                    S.thapuThedar(Thapu.this);
-                    return null;
-                }
-            }.execute();
-        }
+        new SaveLog().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new WeakReference<Context>(this));
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.NammaDiaAlert)
                 .setTitle("Ah interesting!")
                 .setMessage(R.string.error)
@@ -68,17 +52,9 @@ public class Thapu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (dest != null) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        new ThapuSender(Thapu.this, dest, email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    } else {
-                        new ThapuSender(Thapu.this, dest, email, pass).execute();
-                    }
+                    new ThapuSender(new WeakReference<Context>(Thapu.this), dest, email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        new ThapuSender(Thapu.this, email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    } else {
-                        new ThapuSender(Thapu.this, email, pass).execute();
-                    }
+                    new ThapuSender(new WeakReference<Context>(Thapu.this), email, pass).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
             }
         });
@@ -96,5 +72,14 @@ public class Thapu extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(br);
+    }
+
+    private static class SaveLog extends AsyncTask<WeakReference<Context>, Void, Void> {
+        @SafeVarargs
+        @Override
+        protected final Void doInBackground(WeakReference<Context>... params) {
+            S.thapuThedar(params[0].get());
+            return null;
+        }
     }
 }

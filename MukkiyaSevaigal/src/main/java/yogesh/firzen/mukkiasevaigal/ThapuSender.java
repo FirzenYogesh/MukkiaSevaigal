@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -32,19 +33,19 @@ import javax.mail.internet.MimeMultipart;
 
 public class ThapuSender extends AsyncTask<Void, Void, Void> {
 
-    private Context context;
-    private String destination = "veto.voiceenabledtools@gmail.com";
+    private WeakReference<Context> context;
+    private String destination;
     private String email;
     private String password;
     private String data = "";
 
     /**
-     * @param c     context
+     * @param c     a weak reference to the context
      * @param dest  destination email
      * @param email email id
      * @param pass  password for email id
      */
-    public ThapuSender(Context c, String dest, String email, String pass) {
+    public ThapuSender(WeakReference<Context> c, String dest, String email, String pass) {
         destination = dest;
         context = c;
         this.email = email;
@@ -60,18 +61,24 @@ public class ThapuSender extends AsyncTask<Void, Void, Void> {
         this.data = data;
     }
 
-    public ThapuSender(Context c, String mail, String pass) {
+    /**
+     * @param c    a weak reference to the context
+     * @param mail email id
+     * @param pass password for email id
+     */
+    public ThapuSender(WeakReference<Context> c, String mail, String pass) {
         context = c;
         email = mail;
         password = pass;
+        destination = email;
     }
 
     @Override
     protected Void doInBackground(Void... params) {
         String st = null;
-        File f = new File(context.getFilesDir(), S.thapuFile);
+        File f = new File(getContext().getFilesDir(), S.thapuFile);
         if (!f.exists()) {
-            M.T(context, "No Error Logs found");
+            M.T(getContext(), "No Error Logs found");
         } else {
             if (S.isOnline()) {
                 try {
@@ -82,8 +89,8 @@ public class ThapuSender extends AsyncTask<Void, Void, Void> {
                 }
                 sendmail(destination, S.appName + " error log", st);
             } else {
-                M.T(context, "No internet connection");
-                context.sendBroadcast(new Intent("thavara anupiten"));
+                M.T(getContext(), "No internet connection");
+                getContext().sendBroadcast(new Intent("thavara anupiten"));
             }
         }
         return null;
@@ -92,7 +99,7 @@ public class ThapuSender extends AsyncTask<Void, Void, Void> {
     private void sendmail(String email, String sub, String body) {
         Session s = createsession();
         Message m = createMessage(email, sub, body, s);
-        new SendMailTask().execute(m);
+        new SendMailTask(context).execute(m);
     }
 
     private Message createMessage(String email, String sub, String msgbody, Session s) {
@@ -103,13 +110,13 @@ public class ThapuSender extends AsyncTask<Void, Void, Void> {
             bp.setText("From :\n" + Build.MANUFACTURER + ",  " + Build.MODEL + ",  " + Build.PRODUCT + ",  " + Build.VERSION.SDK_INT + "\n\n" + data);
             mp.addBodyPart(bp);
             bp = new MimeBodyPart();
-            String filename = new File(context.getFilesDir(), S.thapuFile).getAbsolutePath();
+            String filename = new File(getContext().getFilesDir(), S.thapuFile).getAbsolutePath();
             DataSource source = new FileDataSource(filename);
             bp.setDataHandler(new DataHandler(source));
             bp.setFileName("HM_LOG.txt");
             mp.addBodyPart(bp);
-            m.setFrom(new InternetAddress(destination, "ASHTech"));
-            m.addRecipient(Message.RecipientType.TO, new InternetAddress(email, "ASH"));
+            m.setFrom(new InternetAddress(destination, "MukkiaSevaigal"));
+            m.addRecipient(Message.RecipientType.TO, new InternetAddress(email, "MukkiaSevaigal"));
             m.setSubject(sub);
             m.setText(msgbody);
             m.setContent(mp);
@@ -134,14 +141,24 @@ public class ThapuSender extends AsyncTask<Void, Void, Void> {
         });
     }
 
-    private class SendMailTask extends AsyncTask<Message, Void, Boolean> {
+    private static class SendMailTask extends AsyncTask<Message, Void, Boolean> {
+
+        private WeakReference<Context> context;
+
+        SendMailTask(WeakReference<Context> context) {
+            this.context = context;
+        }
+
+        private Context getContext() {
+            return context.get();
+        }
 
         @Override
         protected void onPreExecute() {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    M.T(context, "Sending error report");
+                    M.T(getContext(), "Sending error report");
                 }
             });
         }
@@ -153,7 +170,7 @@ public class ThapuSender extends AsyncTask<Void, Void, Void> {
                 return true;
             } catch (MessagingException e) {
                 e.printStackTrace();
-                M.T(context, "Error Report Send failed");
+                M.T(getContext(), "Error Report Send failed");
                 return false;
             }
         }
@@ -161,10 +178,14 @@ public class ThapuSender extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPostExecute(Boolean aVoid) {
             if (aVoid) {
-                M.T(context, "Error report sent");
-                context.sendBroadcast(new Intent("thavara anupiten ku"));
-                new File(context.getFilesDir(), S.thapuFile).delete();
+                M.T(getContext(), "Error report sent");
+                getContext().sendBroadcast(new Intent("thavara anupiten ku"));
+                new File(getContext().getFilesDir(), S.thapuFile).delete();
             }
         }
+    }
+
+    private Context getContext() {
+        return context.get();
     }
 }
