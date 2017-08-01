@@ -24,7 +24,7 @@ This library is posted in jCenter
 
 ```gradle
 dependencies {
-   implementation 'yogesh.firzen:MukkiyaSevaigal:1.0.6'
+   implementation 'yogesh.firzen:MukkiyaSevaigal:1.0.6.a'
 }
 ```
 
@@ -40,8 +40,8 @@ This library has dependencies
 
 ```gradle
 dependencies {
-   implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
-   implementation 'com.android.support:design:26.0.0-beta2'
+   implementation 'com.android.support:appcompat-v7:26.0.0'
+   implementation 'com.android.support:design:26.0.0'
    implementation 'commons-io:commons-io:2.5'
 }
 ```
