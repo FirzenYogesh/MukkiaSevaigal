@@ -1,5 +1,5 @@
 # MukkiaSevaigal
-Android library for commonly used functions
+Android Utility library for commonly used functions
 
 # Features:
 
