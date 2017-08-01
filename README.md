@@ -18,21 +18,31 @@ This library works form API-14
 
 ## Getting Started :
 
-Add Gradle dependency :
+To use this library simply import it by placing the following line under dependencies in your app module's build.gradle file
+
+This library is posted in jCenter
 
 ```gradle
 dependencies {
-   compile 'yogesh.firzen:MukkiyaSevaigal:1.0.6'
+   implementation 'yogesh.firzen:MukkiyaSevaigal:1.0.6'
 }
 ```
 
-AppCompat, Google Design, CommonsIO library is required by this library.
+If any problem occured while importing please add this line to your app module's build.gradle file
+
+```
+   repositories {
+      maven {url "https://dl.bintray.com/firzenyogesh/maven"}
+   }
+```
+
+This library has dependencies
 
 ```gradle
 dependencies {
-   compile 'com.android.support:appcompat-v7:26.0.0-beta2'
-   compile 'com.android.support:design:26.0.0-beta2'
-   compile 'commons-io:commons-io:2.5'
+   implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
+   implementation 'com.android.support:design:26.0.0-beta2'
+   implementation 'commons-io:commons-io:2.5'
 }
 ```
 
@@ -52,3 +62,26 @@ dependencies {
   - `P.getFloat(context,"key");`
   - `P.getBoolean(context,"key");`
   - and more
+  
+## Authors
+
+* **Yogesh Sundaresan** -  [GitHub](https://github.com/FirzenYogesh)
+
+
+## License
+
+```
+Copyright 2016 Yogesh Sundaresan
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
