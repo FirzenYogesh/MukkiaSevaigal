@@ -20,11 +20,11 @@ This library works form API-14
 
 To use this library simply import it by placing the following line under dependencies in your app module's build.gradle file
 
-This library is posted in jCenter
+This library is hosted in jCenter
 
 ```gradle
 dependencies {
-   implementation 'yogesh.firzen:MukkiyaSevaigal:1.0.6.a'
+   implementation 'yogesh.firzen:MukkiyaSevaigal:3.0.3'
 }
 ```
 
@@ -34,16 +34,6 @@ If any problem occured while importing please add this line to your app module's
    repositories {
       maven {url "https://dl.bintray.com/firzenyogesh/maven"}
    }
-```
-
-This library has dependencies
-
-```gradle
-dependencies {
-   implementation 'com.android.support:appcompat-v7:26.0.0'
-   implementation 'com.android.support:design:26.0.0'
-   implementation 'commons-io:commons-io:2.5'
-}
 ```
 
 ## Usage:

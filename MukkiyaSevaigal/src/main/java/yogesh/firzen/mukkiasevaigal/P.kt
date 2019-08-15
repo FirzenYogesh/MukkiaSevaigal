@@ -1,41 +1,38 @@
-package yogesh.firzen.mukkiasevaigal;
+package yogesh.firzen.mukkiasevaigal
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
+import androidx.annotation.RequiresApi
 
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.util.LinkedHashSet
+import java.util.LinkedList
 
 /**
  * Preferences
  */
-public class P {
+object P {
 
-    private final static String defPrefName = "nammapreference";
+    private val defPrefName = "nammapreference"
 
-    private static String prefName = defPrefName;
+    private var prefName = defPrefName
     /**
      * Default value of the String preference
      * Use this variable to check if the key doesn't have a value
      */
-    public final static String vera = "gaali aana bottle uh";
+    val vera = "gaali aana bottle uh"
 
     /**
      * Set a name to the preference
      *
      * @param s The name of the Preference
      */
-    public static void setPreferenceName(String s) {
-        prefName = s;
+    fun setPreferenceName(s: String) {
+        prefName = s
     }
 
-    public static void setPreferenceNameToDefault() {
-        prefName = defPrefName;
+    fun setPreferenceNameToDefault() {
+        prefName = defPrefName
     }
 
     /**
@@ -44,8 +41,8 @@ public class P {
      * @param context context
      * @return Shared Preferences
      */
-    public static SharedPreferences getPreferences(@NonNull Context context) {
-        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    fun getPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
     }
 
     /**
@@ -55,8 +52,8 @@ public class P {
      * @param prefName The name of the preference
      * @return Shared Preferences
      */
-    public static SharedPreferences getPreferences(@NonNull Context context, @NonNull String prefName) {
-        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    fun getPreferences(context: Context, prefName: String): SharedPreferences {
+        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
     }
 
     /**
@@ -65,8 +62,8 @@ public class P {
      * @param context context
      * @return Preference Editor
      */
-    public static SharedPreferences.Editor getEditor(@NonNull Context context) {
-        return getPreferences(context).edit();
+    fun getEditor(context: Context): SharedPreferences.Editor {
+        return getPreferences(context).edit()
     }
 
     /**
@@ -76,8 +73,8 @@ public class P {
      * @param prefName The name of the preference
      * @return Preference Editor
      */
-    public static SharedPreferences.Editor getEditor(@NonNull Context context, @NonNull String prefName) {
-        return getPreferences(context, prefName).edit();
+    fun getEditor(context: Context, prefName: String): SharedPreferences.Editor {
+        return getPreferences(context, prefName).edit()
     }
 
     /**
@@ -87,8 +84,8 @@ public class P {
      * @param key     key fot the preference
      * @param value   value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String key, String value) {
-        getEditor(context).putString(key, value).commit();
+    fun save(context: Context, key: String, value: String) {
+        getEditor(context).putString(key, value).commit()
     }
 
     /**
@@ -99,8 +96,8 @@ public class P {
      * @param key      key fot the preference
      * @param value    value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String prefName, @NonNull String key, String value) {
-        getEditor(context, prefName).putString(key, value).commit();
+    fun save(context: Context, prefName: String, key: String, value: String) {
+        getEditor(context, prefName).putString(key, value).commit()
     }
 
     /**
@@ -110,8 +107,8 @@ public class P {
      * @param key     key fot the preference
      * @param value   value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String key, int value) {
-        getEditor(context).putInt(key, value).commit();
+    fun save(context: Context, key: String, value: Int) {
+        getEditor(context).putInt(key, value).commit()
     }
 
     /**
@@ -122,8 +119,8 @@ public class P {
      * @param key      key fot the preference
      * @param value    value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String prefName, @NonNull String key, int value) {
-        getEditor(context, prefName).putInt(key, value).commit();
+    fun save(context: Context, prefName: String, key: String, value: Int) {
+        getEditor(context, prefName).putInt(key, value).commit()
     }
 
     /**
@@ -133,8 +130,8 @@ public class P {
      * @param key     key fot the preference
      * @param value   value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String key, long value) {
-        getEditor(context).putLong(key, value).commit();
+    fun save(context: Context, key: String, value: Long) {
+        getEditor(context).putLong(key, value).commit()
     }
 
     /**
@@ -145,8 +142,8 @@ public class P {
      * @param key      key fot the preference
      * @param value    value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String prefName, @NonNull String key, long value) {
-        getEditor(context, prefName).putLong(key, value).commit();
+    fun save(context: Context, prefName: String, key: String, value: Long) {
+        getEditor(context, prefName).putLong(key, value).commit()
     }
 
     /**
@@ -156,8 +153,8 @@ public class P {
      * @param key     key fot the preference
      * @param value   value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String key, float value) {
-        getEditor(context).putFloat(key, value).commit();
+    fun save(context: Context, key: String, value: Float) {
+        getEditor(context).putFloat(key, value).commit()
     }
 
     /**
@@ -168,8 +165,8 @@ public class P {
      * @param key      key fot the preference
      * @param value    value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String prefName, @NonNull String key, float value) {
-        getEditor(context, prefName).putFloat(key, value).commit();
+    fun save(context: Context, prefName: String, key: String, value: Float) {
+        getEditor(context, prefName).putFloat(key, value).commit()
     }
 
     /**
@@ -179,8 +176,8 @@ public class P {
      * @param key     key fot the preference
      * @param value   value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String key, boolean value) {
-        getEditor(context).putBoolean(key, value).commit();
+    fun save(context: Context, key: String, value: Boolean) {
+        getEditor(context).putBoolean(key, value).commit()
     }
 
     /**
@@ -191,8 +188,8 @@ public class P {
      * @param key      key fot the preference
      * @param value    value of the preference
      */
-    public static void save(@NonNull Context context, @NonNull String prefName, @NonNull String key, boolean value) {
-        getEditor(context, prefName).putBoolean(key, value).commit();
+    fun save(context: Context, prefName: String, key: String, value: Boolean) {
+        getEditor(context, prefName).putBoolean(key, value).commit()
     }
 
     /**
@@ -201,25 +198,25 @@ public class P {
      * @param context context
      * @param data    data to be stored(object of Map)
      */
-    public static void saveAll(@NonNull Context context, @NonNull Map<String, ?> data) {
-        SharedPreferences.Editor editor = getEditor(context);
-        LinkedList<String> keys = new LinkedList<>(data.keySet());
-        LinkedList<?> values = new LinkedList<>(data.values());
-        for (int i = 0; i < keys.size(); i++) {
-            if (values.get(i) instanceof String)
-                editor.putString(keys.get(i), String.valueOf(values.get(i)));
-            if (values.get(i) instanceof Integer)
-                editor.putInt(keys.get(i), (Integer) values.get(i));
-            if (values.get(i) instanceof Long)
-                editor.putLong(keys.get(i), (Long) values.get(i));
-            if (values.get(i) instanceof Float)
-                editor.putFloat(keys.get(i), (Float) values.get(i));
-            if (values.get(i) instanceof Boolean)
-                editor.putBoolean(keys.get(i), (Boolean) values.get(i));
-            if (values.get(i) instanceof Set && Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB)
-                editor.putStringSet(keys.get(i), (Set<String>) values.get(i));
+    fun saveAll(context: Context, data: Map<String, *>) {
+        val editor = getEditor(context)
+        val keys = LinkedList(data.keys)
+        val values = LinkedList(data.values)
+        for (i in keys.indices) {
+            if (values[i] is String)
+                editor.putString(keys[i], values[i].toString())
+            if (values[i] is Int)
+                editor.putInt(keys[i], values[i] as Int)
+            if (values[i] is Long)
+                editor.putLong(keys[i], values[i] as Long)
+            if (values[i] is Float)
+                editor.putFloat(keys[i], values[i] as Float)
+            if (values[i] is Boolean)
+                editor.putBoolean(keys[i], values[i] as Boolean)
+            if (values[i] is Set<*> && Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB)
+                editor.putStringSet(keys[i], values[i] as Set<String>)
         }
-        editor.commit();
+        editor.commit()
     }
 
     /**
@@ -229,25 +226,25 @@ public class P {
      * @param prefName The name of the preference
      * @param data     data to be stored(object of Map)
      */
-    public static void saveAll(@NonNull Context context, String prefName, @NonNull Map<String, ?> data) {
-        SharedPreferences.Editor editor = getEditor(context, prefName);
-        LinkedList<String> keys = new LinkedList<>(data.keySet());
-        LinkedList<?> values = new LinkedList<>(data.values());
-        for (int i = 0; i < keys.size(); i++) {
-            if (values.get(i) instanceof String)
-                editor.putString(keys.get(i), String.valueOf(values.get(i)));
-            if (values.get(i) instanceof Integer)
-                editor.putInt(keys.get(i), (Integer) values.get(i));
-            if (values.get(i) instanceof Long)
-                editor.putLong(keys.get(i), (Long) values.get(i));
-            if (values.get(i) instanceof Float)
-                editor.putFloat(keys.get(i), (Float) values.get(i));
-            if (values.get(i) instanceof Boolean)
-                editor.putBoolean(keys.get(i), (Boolean) values.get(i));
-            if (values.get(i) instanceof Set && Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB)
-                editor.putStringSet(keys.get(i), (Set<String>) values.get(i));
+    fun saveAll(context: Context, prefName: String, data: Map<String, *>) {
+        val editor = getEditor(context, prefName)
+        val keys = LinkedList(data.keys)
+        val values = LinkedList(data.values)
+        for (i in keys.indices) {
+            if (values[i] is String)
+                editor.putString(keys[i], values[i].toString())
+            if (values[i] is Int)
+                editor.putInt(keys[i], values[i] as Int)
+            if (values[i] is Long)
+                editor.putLong(keys[i], values[i] as Long)
+            if (values[i] is Float)
+                editor.putFloat(keys[i], values[i] as Float)
+            if (values[i] is Boolean)
+                editor.putBoolean(keys[i], values[i] as Boolean)
+            if (values[i] is Set<*> && Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB)
+                editor.putStringSet(keys[i], values[i] as Set<String>)
         }
-        editor.commit();
+        editor.commit()
     }
 
     /**
@@ -257,8 +254,8 @@ public class P {
      * @param key     The key of the stored value
      * @return The stored value if key exists or 0
      */
-    public static int getInt(@NonNull Context context, @NonNull String key) {
-        return getPreferences(context).getInt(key, 0);
+    fun getInt(context: Context, key: String): Int {
+        return getPreferences(context).getInt(key, 0)
     }
 
     /**
@@ -269,8 +266,8 @@ public class P {
      * @param key      The key of the stored value
      * @return The stored value if key exists or 0
      */
-    public static int getInt(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
-        return getPreferences(context, prefName).getInt(key, 0);
+    fun getInt(context: Context, prefName: String, key: String): Int {
+        return getPreferences(context, prefName).getInt(key, 0)
     }
 
     /**
@@ -281,8 +278,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static int getInt(@NonNull Context context, @NonNull String key, int defaultValue) {
-        return getPreferences(context).getInt(key, defaultValue);
+    fun getInt(context: Context, key: String, defaultValue: Int): Int {
+        return getPreferences(context).getInt(key, defaultValue)
     }
 
     /**
@@ -294,8 +291,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static int getInt(@NonNull Context context, @NonNull String prefName, @NonNull String key, int defaultValue) {
-        return getPreferences(context, prefName).getInt(key, defaultValue);
+    fun getInt(context: Context, prefName: String, key: String, defaultValue: Int): Int {
+        return getPreferences(context, prefName).getInt(key, defaultValue)
     }
 
     /**
@@ -305,8 +302,8 @@ public class P {
      * @param key     The key of the stored value
      * @return The stored value if key exists or 0
      */
-    public static long getLong(@NonNull Context context, @NonNull String key) {
-        return getPreferences(context).getLong(key, 0);
+    fun getLong(context: Context, key: String): Long {
+        return getPreferences(context).getLong(key, 0)
     }
 
     /**
@@ -317,8 +314,8 @@ public class P {
      * @param key      The key of the stored value
      * @return The stored value if key exists or 0
      */
-    public static long getLong(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
-        return getPreferences(context, prefName).getLong(key, 0);
+    fun getLong(context: Context, prefName: String, key: String): Long {
+        return getPreferences(context, prefName).getLong(key, 0)
     }
 
     /**
@@ -329,8 +326,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static long getLong(@NonNull Context context, @NonNull String key, long defaultValue) {
-        return getPreferences(context).getLong(key, defaultValue);
+    fun getLong(context: Context, key: String, defaultValue: Long): Long {
+        return getPreferences(context).getLong(key, defaultValue)
     }
 
     /**
@@ -342,8 +339,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static long getLong(@NonNull Context context, @NonNull String prefName, @NonNull String key, long defaultValue) {
-        return getPreferences(context, prefName).getLong(key, defaultValue);
+    fun getLong(context: Context, prefName: String, key: String, defaultValue: Long): Long {
+        return getPreferences(context, prefName).getLong(key, defaultValue)
     }
 
     /**
@@ -353,8 +350,8 @@ public class P {
      * @param key     The key of the stored value
      * @return The stored value if key exists or 0
      */
-    public static float getFloat(@NonNull Context context, @NonNull String key) {
-        return getPreferences(context).getFloat(key, 0);
+    fun getFloat(context: Context, key: String): Float {
+        return getPreferences(context).getFloat(key, 0f)
     }
 
     /**
@@ -365,8 +362,8 @@ public class P {
      * @param key      The key of the stored value
      * @return The stored value if key exists or 0
      */
-    public static float getFloat(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
-        return getPreferences(context, prefName).getFloat(key, 0);
+    fun getFloat(context: Context, prefName: String, key: String): Float {
+        return getPreferences(context, prefName).getFloat(key, 0f)
     }
 
     /**
@@ -377,8 +374,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static float getFloat(@NonNull Context context, @NonNull String key, float defaultValue) {
-        return getPreferences(context).getFloat(key, defaultValue);
+    fun getFloat(context: Context, key: String, defaultValue: Float): Float {
+        return getPreferences(context).getFloat(key, defaultValue)
     }
 
     /**
@@ -390,8 +387,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static float getFloat(@NonNull Context context, @NonNull String prefName, @NonNull String key, float defaultValue) {
-        return getPreferences(context, prefName).getFloat(key, defaultValue);
+    fun getFloat(context: Context, prefName: String, key: String, defaultValue: Float): Float {
+        return getPreferences(context, prefName).getFloat(key, defaultValue)
     }
 
     /**
@@ -401,8 +398,8 @@ public class P {
      * @param key     The key of the stored value
      * @return The stored value if key exists or value of vera
      */
-    public static String getString(@NonNull Context context, @NonNull String key) {
-        return getPreferences(context).getString(key, vera);
+    fun getString(context: Context, key: String): String? {
+        return getPreferences(context).getString(key, vera)
     }
 
     /**
@@ -413,12 +410,13 @@ public class P {
      * @param key      The key of the stored value
      * @return The stored value if key exists or value of vera
      */
-    public static String getString(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
-        return getPreferences(context, prefName).getString(key, vera);
+    fun getString(context: Context, prefName: String, key: String): String? {
+        return getPreferences(context, prefName).getString(key, vera)
     }
 
-/*
-    *//**
+    /*
+    */
+    /**
      * Get the saved String value
      *
      * @param context context
@@ -439,8 +437,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static String getString(@NonNull Context context, @NonNull String prefName, @NonNull String key, String defaultValue) {
-        return getPreferences(context, prefName).getString(key, defaultValue);
+    fun getString(context: Context, prefName: String, key: String, defaultValue: String): String? {
+        return getPreferences(context, prefName).getString(key, defaultValue)
     }
 
     /**
@@ -450,8 +448,8 @@ public class P {
      * @param key     The key of the stored value
      * @return The stored value if key exists or false
      */
-    public static boolean getBoolean(@NonNull Context context, @NonNull String key) {
-        return getPreferences(context).getBoolean(key, false);
+    fun getBoolean(context: Context, key: String): Boolean {
+        return getPreferences(context).getBoolean(key, false)
     }
 
     /**
@@ -462,8 +460,8 @@ public class P {
      * @param key      The key of the stored value
      * @return The stored value if key exists or false
      */
-    public static boolean getBoolean(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
-        return getPreferences(context, prefName).getBoolean(key, false);
+    fun getBoolean(context: Context, prefName: String, key: String): Boolean {
+        return getPreferences(context, prefName).getBoolean(key, false)
     }
 
     /**
@@ -474,8 +472,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static boolean getBoolean(@NonNull Context context, @NonNull String key, boolean defaultValue) {
-        return getPreferences(context).getBoolean(key, defaultValue);
+    fun getBoolean(context: Context, key: String, defaultValue: Boolean): Boolean {
+        return getPreferences(context).getBoolean(key, defaultValue)
     }
 
     /**
@@ -487,8 +485,8 @@ public class P {
      * @param defaultValue The value to be returned if the key is not found
      * @return The stored value if key exists or defaultValue specified
      */
-    public static boolean getBoolean(@NonNull Context context, @NonNull String prefName, @NonNull String key, boolean defaultValue) {
-        return getPreferences(context, prefName).getBoolean(key, defaultValue);
+    fun getBoolean(context: Context, prefName: String, key: String, defaultValue: Boolean): Boolean {
+        return getPreferences(context, prefName).getBoolean(key, defaultValue)
     }
 
     /**
@@ -499,8 +497,8 @@ public class P {
      * @return The string set values if key exists else an empty set
      */
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-    public static Set<String> getSet(@NonNull Context context, @NonNull String key) {
-        return getPreferences(context).getStringSet(key, new LinkedHashSet<String>());
+    fun getSet(context: Context, key: String): Set<String>? {
+        return getPreferences(context).getStringSet(key, LinkedHashSet())
     }
 
     /**
@@ -512,8 +510,8 @@ public class P {
      * @return The string set values if key exists else an empty set
      */
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-    public static Set<String> getSet(@NonNull Context context, @NonNull String prefName, @NonNull String key) {
-        return getPreferences(context, prefName).getStringSet(key, new LinkedHashSet<String>());
+    fun getSet(context: Context, prefName: String, key: String): Set<String>? {
+        return getPreferences(context, prefName).getStringSet(key, LinkedHashSet())
     }
 
 
@@ -524,8 +522,8 @@ public class P {
      * @param context context
      * @return All the stored preferences as a Map
      */
-    public static Map<String, ?> getAll(@NonNull Context context) {
-        return getPreferences(context).getAll();
+    fun getAll(context: Context): Map<String, *> {
+        return getPreferences(context).all
     }
 
     /**
@@ -536,7 +534,7 @@ public class P {
      * @param prefName The name of the preference
      * @return All the stored preferences as a Map
      */
-    public static Map<String, ?> getAll(@NonNull Context context, @NonNull String prefName) {
-        return getPreferences(context, prefName).getAll();
+    fun getAll(context: Context, prefName: String): Map<String, *> {
+        return getPreferences(context, prefName).all
     }
 }
