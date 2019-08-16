@@ -125,4 +125,30 @@ object F {
     fun isCompressed(file: File): Boolean {
         return isCompressed(file.absolutePath)
     }
+
+    fun isMedia(filename: String): Boolean {
+        return isImage(filename) || isVideo(filename) || isAudio(filename)
+    }
+
+    fun isMedia(file: File): Boolean {
+        return isMedia(file.absolutePath)
+    }
+
+    fun isAnyDocumentType(filename: String): Boolean {
+        return isDocument(filename) || isPresentation(filename) || isSpreadsheet(filename)
+    }
+
+    fun isAnyDocumentType(file: File): Boolean {
+        return isAnyDocumentType(file.absolutePath)
+    }
+
+    fun isAPK(filename: String): Boolean {
+        val ext = getExtension(filename).toLowerCase()
+        val extensions = arrayOf("apk", "aab")
+        return isDocument(filename) || isPresentation(filename) || isSpreadsheet(filename)
+    }
+
+    fun isAPK(file: File): Boolean {
+        return isAPK(file.absolutePath)
+    }
 }
