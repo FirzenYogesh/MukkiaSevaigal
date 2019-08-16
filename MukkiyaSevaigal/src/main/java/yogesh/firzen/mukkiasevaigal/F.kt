@@ -145,7 +145,7 @@ object F {
     fun isAPK(filename: String): Boolean {
         val ext = getExtension(filename).toLowerCase()
         val extensions = arrayOf("apk", "aab")
-        return isDocument(filename) || isPresentation(filename) || isSpreadsheet(filename)
+        return extensions.contains(ext)
     }
 
     fun isAPK(file: File): Boolean {
