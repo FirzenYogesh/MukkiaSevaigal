@@ -151,4 +151,24 @@ object F {
     fun isAPK(file: File): Boolean {
         return isAPK(file.absolutePath)
     }
+
+    fun isDatabase(filename: String): Boolean {
+        val ext = getExtension(filename).toLowerCase()
+        val extensions = arrayOf("csv", "sqlite", "db", "dbf", "sql", "dat", "log", "mdb", "sav", "tar", "xml", "json")
+        return extensions.contains(ext)
+    }
+
+    fun isDatabase(file: File): Boolean {
+        return isDatabase(file.absolutePath)
+    }
+
+    fun isCode(filename: String): Boolean {
+        val ext = getExtension(filename).toLowerCase()
+        val extensions = arrayOf("java", "c", "cpp", "cxx", "cc", "py", "cbp", "py3", "kt", "css", "cs", "dart", "js", "vb", "ts", "php", "jsp", "pl", "cgi", "c#", "gradle", "m", "r", "h")
+        return extensions.contains(ext)
+    }
+
+    fun isCode(file: File): Boolean {
+        return isCode(file.absolutePath)
+    }
 }

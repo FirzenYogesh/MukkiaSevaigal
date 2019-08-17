@@ -26,76 +26,76 @@ object K {
     public final static String CONTACTS_READ = Manifest.permission.READ_CONTACTS;
     public final static String CONTACTS_WRITE = Manifest.permission.WRITE_CONTACTS;
     public final static String RECORD = Manifest.permission.RECORD_AUDIO;*/
-    val PERM_REQ = 7596
+    const val PERM_REQ = 7596
 
     /**
      * Dangerous Permissions for Calendar
      */
     object CALENDAR {
-        var READ = Manifest.permission.READ_CALENDAR
-        var WRITE = Manifest.permission.WRITE_CALENDAR
+        const val READ = Manifest.permission.READ_CALENDAR
+        const val WRITE = Manifest.permission.WRITE_CALENDAR
     }
 
     /**
      * Dangerous Permissions for Camera
      */
     object CAMERA {
-        val CAMERA = Manifest.permission.CAMERA
+        const val CAMERA = Manifest.permission.CAMERA
     }
 
     /**
      * Dangerous Permissions for Contacts
      */
     object CONTACTS {
-        val READ = Manifest.permission.READ_CONTACTS
-        val WRITE = Manifest.permission.WRITE_CONTACTS
-        val GET_ACCOUNTS = Manifest.permission.GET_ACCOUNTS
+        const val READ = Manifest.permission.READ_CONTACTS
+        const val WRITE = Manifest.permission.WRITE_CONTACTS
+        const val GET_ACCOUNTS = Manifest.permission.GET_ACCOUNTS
     }
 
     /**
      * Dangerous Permissions for Location
      */
     object LOCATION {
-        val FINE = Manifest.permission.ACCESS_FINE_LOCATION
-        val COARSE = Manifest.permission.ACCESS_COARSE_LOCATION
+        const val FINE = Manifest.permission.ACCESS_FINE_LOCATION
+        const val COARSE = Manifest.permission.ACCESS_COARSE_LOCATION
     }
 
     /**
      * Dangerous Permissions for Microphone
      */
     object MICROPHONE {
-        val RECORD_AUDIO = Manifest.permission.RECORD_AUDIO
+        const val RECORD_AUDIO = Manifest.permission.RECORD_AUDIO
     }
 
     /**
      * Dangerous Permissions for Phone
      */
     object PHONE {
-        val READ_PHONE_STATE = Manifest.permission.READ_PHONE_STATE
-        val CALL_PHONE = Manifest.permission.CALL_PHONE
-        val READ_CALL_LOG = Manifest.permission.READ_CALL_LOG
-        val WRITE_CALL_LOG = Manifest.permission.WRITE_CALL_LOG
-        val ADD_VOICEMAIL = Manifest.permission.ADD_VOICEMAIL
-        val USE_SIP = Manifest.permission.USE_SIP
-        val PROCESS_OUTGOING_CALLS = Manifest.permission.PROCESS_OUTGOING_CALLS
+        const val READ_PHONE_STATE = Manifest.permission.READ_PHONE_STATE
+        const val CALL_PHONE = Manifest.permission.CALL_PHONE
+        const val READ_CALL_LOG = Manifest.permission.READ_CALL_LOG
+        const val WRITE_CALL_LOG = Manifest.permission.WRITE_CALL_LOG
+        const val ADD_VOICEMAIL = Manifest.permission.ADD_VOICEMAIL
+        const val USE_SIP = Manifest.permission.USE_SIP
+        const val PROCESS_OUTGOING_CALLS = Manifest.permission.PROCESS_OUTGOING_CALLS
     }
 
     /**
      * Dangerous Permissions for Sensors
      */
     object SENSORS {
-        val BODY = Manifest.permission.BODY_SENSORS
+        const val BODY = Manifest.permission.BODY_SENSORS
     }
 
     /**
      * Dangerous Permissions for SMS
      */
     object SMS {
-        val SEND = Manifest.permission.SEND_SMS
-        val READ = Manifest.permission.READ_SMS
-        val RECEIVE_SMS = Manifest.permission.RECEIVE_SMS
-        val RECEIVE_MMS = Manifest.permission.RECEIVE_MMS
-        val RECEIVE_WAP_PUSH = Manifest.permission.RECEIVE_WAP_PUSH
+        const val SEND = Manifest.permission.SEND_SMS
+        const val READ = Manifest.permission.READ_SMS
+        const val RECEIVE_SMS = Manifest.permission.RECEIVE_SMS
+        const val RECEIVE_MMS = Manifest.permission.RECEIVE_MMS
+        const val RECEIVE_WAP_PUSH = Manifest.permission.RECEIVE_WAP_PUSH
     }
 
     /**

@@ -537,4 +537,12 @@ object P {
     fun getAll(context: Context, prefName: String): Map<String, *> {
         return getPreferences(context, prefName).all
     }
+
+    fun contains(context: Context, key: String): Boolean {
+        return getPreferences(context).contains(key)
+    }
+
+    fun contains(context: Context, prefName: String, key: String): Boolean {
+        return getPreferences(context, prefName).contains(key)
+    }
 }
